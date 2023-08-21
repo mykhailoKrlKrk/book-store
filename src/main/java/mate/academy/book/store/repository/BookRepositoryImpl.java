@@ -1,7 +1,7 @@
-package mate.academy.book_store.repository;
+package mate.academy.book.store.repository;
 
 import java.util.List;
-import mate.academy.book_store.model.Book;
+import mate.academy.book.store.model.Book;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BookRepositoryImpl implements BookRepository{
+public class BookRepositoryImpl implements BookRepository {
     private final SessionFactory sessionFactory;
 
     @Autowired
@@ -42,11 +42,11 @@ public class BookRepositoryImpl implements BookRepository{
 
     @Override
     public List findAll() {
-       try (Session session = sessionFactory.openSession()) {
-           Query<Book> findAllBooksQuery = session.createQuery("from Book ", Book.class);
-           return findAllBooksQuery.getResultList();
-       } catch (Exception e) {
-           throw new RuntimeException("Can't get all books from DB", e);
-       }
+        try (Session session = sessionFactory.openSession()) {
+            Query<Book> findAllBooksQuery = session.createQuery("from Book ", Book.class);
+            return findAllBooksQuery.getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Can't get all books from DB", e);
+        }
     }
 }

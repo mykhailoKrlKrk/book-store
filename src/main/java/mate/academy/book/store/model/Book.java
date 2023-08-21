@@ -1,4 +1,4 @@
-package mate.academy.book_store.model;
+package mate.academy.book.store.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
