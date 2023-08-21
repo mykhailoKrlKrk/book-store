@@ -1,8 +1,8 @@
-package mate.academy.book_store;
+package mate.academy.book.store;
 
 import java.math.BigDecimal;
-import mate.academy.book_store.model.Book;
-import mate.academy.book_store.service.BookService;
+import mate.academy.book.store.model.Book;
+import mate.academy.book.store.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,9 +18,8 @@ public class BookStoreApplication {
         SpringApplication.run(BookStoreApplication.class, args);
     }
 
-
     @Bean
-    public CommandLineRunner commandLineRunner(){
+    public CommandLineRunner commandLineRunner() {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
