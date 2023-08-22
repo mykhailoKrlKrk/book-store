@@ -1,6 +1,9 @@
 package mate.academy.book.store.repository;
 
 import java.util.List;
+import java.util.Optional;
+import mate.academy.book.store.dto.BookDto;
+import mate.academy.book.store.exception.DataProcessingException;
 import mate.academy.book.store.model.Book;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,7 +35,7 @@ public class BookRepositoryImpl implements BookRepository {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't save book to DB: " + book, e);
+            throw new DataProcessingException("Can't save book to DB: " + book, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -41,12 +44,21 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     @Override
+    public Optional<Book> findById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            Book book = session.find(Book.class, id);
+            return Optional.ofNullable(book);
+        }
+    }
+
+
+    @Override
     public List findAll() {
         try (Session session = sessionFactory.openSession()) {
             Query<Book> findAllBooksQuery = session.createQuery("from Book ", Book.class);
             return findAllBooksQuery.getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't get all books from DB", e);
+            throw new DataProcessingException("Can't get all books from DB", e);
         }
     }
 }
