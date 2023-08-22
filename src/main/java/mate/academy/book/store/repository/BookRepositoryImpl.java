@@ -2,7 +2,6 @@ package mate.academy.book.store.repository;
 
 import java.util.List;
 import java.util.Optional;
-import mate.academy.book.store.dto.BookDto;
 import mate.academy.book.store.exception.DataProcessingException;
 import mate.academy.book.store.model.Book;
 import org.hibernate.Session;
@@ -50,7 +49,6 @@ public class BookRepositoryImpl implements BookRepository {
             return Optional.ofNullable(book);
         }
     }
-
 
     @Override
     public List findAll() {
