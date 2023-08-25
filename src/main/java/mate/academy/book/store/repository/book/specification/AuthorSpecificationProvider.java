@@ -4,7 +4,9 @@ import java.util.Arrays;
 import mate.academy.book.store.model.Book;
 import mate.academy.book.store.repository.SpecificationProvider;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AuthorSpecificationProvider implements SpecificationProvider<Book> {
     @Override
     public String getKey() {
@@ -12,6 +14,7 @@ public class AuthorSpecificationProvider implements SpecificationProvider<Book> 
     }
 
     public Specification<Book> getSpecification(String[] params) {
-        return (root, query, criteriaBuilder) -> root.get("author").in(Arrays.stream(params).toArray());
+        return (root, query, criteriaBuilder) -> root.get("author")
+                .in(Arrays.stream(params).toArray());
     }
 }

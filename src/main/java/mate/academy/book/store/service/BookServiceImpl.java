@@ -2,7 +2,6 @@ package mate.academy.book.store.service;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import mate.academy.book.store.dto.BookDto;
 import mate.academy.book.store.dto.BookSearchParameters;
 import mate.academy.book.store.dto.CreateBookRequestDto;
