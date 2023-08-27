@@ -6,8 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import lombok.Data;
+import mate.academy.book.store.config.validation.Isbn;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -20,21 +23,29 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
     @Column(name = "title")
     private String title;
 
+    @NotNull
     @Column(name = "author")
     private String author;
 
+    @NotNull
+    @Isbn
     @Column(name = "isbn", unique = true)
     private String isbn;
 
     @Column(name = "price")
+    @Min(0)
     private BigDecimal price;
 
+    @NotNull
     @Column(name = "description")
     private String description;
 
+    @NotNull
     @Column(name = "coverImage")
     private String coverImage;
 
