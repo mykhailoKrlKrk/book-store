@@ -1,4 +1,4 @@
-package mate.academy.book.store.dto;
+package mate.academy.book.store.dto.bookdto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.PositiveOrZero;

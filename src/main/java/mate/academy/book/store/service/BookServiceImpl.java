@@ -2,9 +2,9 @@ package mate.academy.book.store.service;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
-import mate.academy.book.store.dto.BookDto;
-import mate.academy.book.store.dto.BookSearchParameters;
-import mate.academy.book.store.dto.CreateBookRequestDto;
+import mate.academy.book.store.dto.bookdto.BookDto;
+import mate.academy.book.store.dto.bookdto.BookSearchParameters;
+import mate.academy.book.store.dto.bookdto.CreateBookRequestDto;
 import mate.academy.book.store.exception.EntityNotFoundException;
 import mate.academy.book.store.mapper.BookMapper;
 import mate.academy.book.store.model.Book;
