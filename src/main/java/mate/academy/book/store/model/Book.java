@@ -10,7 +10,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import lombok.Data;
-import mate.academy.book.store.config.validation.Isbn;
+import mate.academy.book.store.validation.Isbn;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 

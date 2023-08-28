@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import lombok.Data;
-import mate.academy.book.store.config.validation.Isbn;
+import mate.academy.book.store.validation.Isbn;
 
 @Data
 public class CreateBookRequestDto {
