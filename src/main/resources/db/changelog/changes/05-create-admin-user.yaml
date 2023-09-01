@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-default-admin-user
+      author: mykhailoKrk
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: email
+                  value: "bob@mail.com"
+              - column:
+                  name: password
+                  value: "$2a$12$rUVIx9APvEpH9gveCYvOrOnUZVDdoF.w95J7eFckzFtlfGN.9m4tG"
+              - column:
+                  name: first_name
+                  value: "Bob"
+              - column:
+                  name: last_name
+                  value: "Obo"
+              - column:
+                  name: shipping_address
+                  value: "B0bAddress"
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: email
+                  value: "alice@mail.com"
+              - column:
+                  name: password
+                  value: "$2a$12$FvxbShP4ccx0IYagELu0JON.m.6QldvUCUEjmsLx3KgU6yycA5GH"
+              - column:
+                  name: first_name
+                  value: "Alice"
+              - column:
+                  name: last_name
+                  value: "Lor"
+              - column:
+                  name: shipping_address
+                  value: "AliceAddress"
