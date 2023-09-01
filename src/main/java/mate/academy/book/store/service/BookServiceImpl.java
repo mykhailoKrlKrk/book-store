@@ -2,14 +2,15 @@ package mate.academy.book.store.service;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
-import mate.academy.book.store.dto.BookDto;
-import mate.academy.book.store.dto.BookSearchParameters;
-import mate.academy.book.store.dto.CreateBookRequestDto;
+import mate.academy.book.store.dto.bookdto.BookDto;
+import mate.academy.book.store.dto.bookdto.BookSearchParameters;
+import mate.academy.book.store.dto.bookdto.CreateBookRequestDto;
 import mate.academy.book.store.exception.EntityNotFoundException;
 import mate.academy.book.store.mapper.BookMapper;
 import mate.academy.book.store.model.Book;
 import mate.academy.book.store.repository.book.BookRepository;
 import mate.academy.book.store.repository.book.BookSpecificationBuilder;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +28,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> findAll() {
-        return bookRepository.findAll().stream()
+    public List<BookDto> findAll(Pageable pageable) {
+        return bookRepository.findAll(pageable).stream()
                 .map(bookMapper::toDto)
                 .toList();
     }
