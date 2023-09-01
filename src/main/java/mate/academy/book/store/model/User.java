@@ -3,7 +3,6 @@ package mate.academy.book.store.model;
 import jakarta.persistence.*;
 import java.util.Collection;
 import java.util.Set;
-import java.util.stream.Collectors;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -47,7 +46,7 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
                 .map(r -> new SimpleGrantedAuthority(r.getRoleName().name()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

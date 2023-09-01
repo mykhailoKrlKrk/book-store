@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/auth")
+@RequestMapping("api/auth")
 public class AuthenticationController {
     private final UserService userService;
     private final AuthenticationService authenticationService;
@@ -23,8 +23,8 @@ public class AuthenticationController {
         return authenticationService.authenticate(request);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
     public UserResponseDto register(@RequestBody @Valid UserRegistrationRequestDto request) {
         return userService.register(request);
     }
