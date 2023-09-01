@@ -5,12 +5,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import mate.academy.book.store.dto.BookDto;
-import mate.academy.book.store.dto.BookSearchParameters;
-import mate.academy.book.store.dto.CreateBookRequestDto;
+import mate.academy.book.store.dto.book.BookDto;
+import mate.academy.book.store.dto.book.BookSearchParameters;
+import mate.academy.book.store.dto.book.CreateBookRequestDto;
+import mate.academy.book.store.model.RoleName;
 import mate.academy.book.store.service.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +43,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Operation(summary = "Update book by id", description = "Update book information by id")
     public BookDto updateBookById(@PathVariable Long id,
                                   @RequestBody @Valid CreateBookRequestDto requestDto) {
