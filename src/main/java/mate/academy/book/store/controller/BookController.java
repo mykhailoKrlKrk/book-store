@@ -1,6 +1,8 @@
 package mate.academy.book.store.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -29,16 +31,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "api/books")
 public class BookController {
     private final BookService bookService;
-    @PreAuthorize("hasRole('ROLE_USER')")
+
     @GetMapping
     @Operation(summary = "Get all books", description = "Get list of all available books")
     public List<BookDto> getAll(Pageable pageable) {
         return bookService.findAll(pageable);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/{id}")
     @Operation(summary = "Get book by id", description = "Get book by specific id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully received book by id"),
+            @ApiResponse(responseCode = "500", description = "Not found - book with this id is not exist")
+    })
     public BookDto findById(@PathVariable Long id) {
         return bookService.findById(id);
     }
@@ -66,10 +71,13 @@ public class BookController {
         bookService.deleteById(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/search")
     @Operation(summary = "Search book by params", description
             = "Search for book with corresponding params")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully find user by parameters"),
+            @ApiResponse(responseCode = "500", description = "User with this parameters is not exist")
+    })
     public List<BookDto> search(BookSearchParameters searchParameters) {
         return bookService.search(searchParameters);
     }

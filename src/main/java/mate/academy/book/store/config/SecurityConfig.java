@@ -1,5 +1,7 @@
 package mate.academy.book.store.config;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 import lombok.RequiredArgsConstructor;
 import mate.academy.book.store.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
@@ -16,11 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 @EnableMethodSecurity
-@RequiredArgsConstructor
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
     private final UserDetailsService userDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -30,20 +30,21 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
-        return security
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**")
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated())
+                .authorizeHttpRequests(
+                        auth -> auth
+                                .requestMatchers("/auth/**")
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated()
+                )
                 .httpBasic(withDefaults())
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(
+                        session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class)
                 .userDetailsService(userDetailsService)
@@ -51,9 +52,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    AuthenticationManager authenticationManager(
-            AuthenticationConfiguration authenticationConfiguration
-    ) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
+            throws Exception {
+        return configuration.getAuthenticationManager();
     }
 }
