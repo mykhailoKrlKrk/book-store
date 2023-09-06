@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import mate.academy.book.store.dto.book.BookDto;
 import mate.academy.book.store.dto.book.BookSearchParameters;
 import mate.academy.book.store.dto.book.CreateBookRequestDto;
-import mate.academy.book.store.model.RoleName;
 import mate.academy.book.store.service.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -42,7 +41,8 @@ public class BookController {
     @Operation(summary = "Get book by id", description = "Get book by specific id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully received book by id"),
-            @ApiResponse(responseCode = "500", description = "Not found - book with this id is not exist")
+            @ApiResponse(responseCode = "500", description
+                    = "Not found - book with this id is not exist")
     })
     public BookDto findById(@PathVariable Long id) {
         return bookService.findById(id);
@@ -75,8 +75,10 @@ public class BookController {
     @Operation(summary = "Search book by params", description
             = "Search for book with corresponding params")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully find user by parameters"),
-            @ApiResponse(responseCode = "500", description = "User with this parameters is not exist")
+            @ApiResponse(responseCode = "200", description
+                    = "Successfully find user by parameters"),
+            @ApiResponse(responseCode = "500", description
+                    = "User with this parameters is not exist")
     })
     public List<BookDto> search(BookSearchParameters searchParameters) {
         return bookService.search(searchParameters);

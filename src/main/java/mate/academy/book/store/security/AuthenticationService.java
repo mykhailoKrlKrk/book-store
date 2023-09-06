@@ -1,6 +1,5 @@
 package mate.academy.book.store.security;
 
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import mate.academy.book.store.dto.user.UserLoginRequestDto;
 import mate.academy.book.store.dto.user.UserLoginResponseDto;

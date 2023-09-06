@@ -13,7 +13,11 @@ import mate.academy.book.store.dto.user.UserResponseDto;
 import mate.academy.book.store.security.AuthenticationService;
 import mate.academy.book.store.service.UserService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Authentication management",
         description = "Manage the authenticating in program and role abilities")
@@ -39,7 +43,8 @@ public class AuthenticationController {
     @Operation(summary = "Register user", description = "Gives the ability to register user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully registered"),
-            @ApiResponse(responseCode = "500", description = "User with this parameters is already exist")
+            @ApiResponse(responseCode = "500", description
+                    = "User with this parameters is already exist")
     })
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponseDto register(@RequestBody @Valid UserRegistrationRequestDto request) {
