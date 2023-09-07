@@ -44,4 +44,3 @@ databaseChangeLog:
                   value: "Lor"
               - column:
                   name: shipping_address
-                  value: "AliceAddress"

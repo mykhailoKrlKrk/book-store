@@ -12,8 +12,12 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FieldMatch {
     String message() default "Passwords don't match";
+
     String field();
+
     String fieldMatch();
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }
