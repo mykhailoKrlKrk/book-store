@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-default-admin-user
+      author: mykhailoKrk
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column: { name: name, value: "ROLE_USER" }
