@@ -33,7 +33,7 @@ public class AuthenticationController {
             description = "Gives the ability to login as registered user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully login"),
-            @ApiResponse(responseCode = "401", description = "Not found - The user was not found")
+            @ApiResponse(responseCode = "401", description = "Unauthorized user or wrong email")
     })
     public UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto request) {
         return authenticationService.authenticate(request);
@@ -43,7 +43,7 @@ public class AuthenticationController {
     @Operation(summary = "Register user", description = "Gives the ability to register user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully registered"),
-            @ApiResponse(responseCode = "500", description
+            @ApiResponse(responseCode = "409", description
                     = "User with this parameters is already exist")
     })
     @ResponseStatus(HttpStatus.CREATED)

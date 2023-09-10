@@ -40,8 +40,8 @@ public class BookController {
     @GetMapping("/{id}")
     @Operation(summary = "Get book by id", description = "Get book by specific id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully received book by id"),
-            @ApiResponse(responseCode = "500", description
+            @ApiResponse(responseCode = "200", description = "Successfully find book by id"),
+            @ApiResponse(responseCode = "404", description
                     = "Not found - book with this id is not exist")
     })
     public BookDto findById(@PathVariable Long id) {
@@ -57,14 +57,15 @@ public class BookController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Operation(summary = "Create book", description = "Create new book in the DB")
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.save(requestDto);
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Operation(summary = "Delete book", description = "Delete book by specific id")
     public void delete(@PathVariable Long id) {
@@ -74,12 +75,6 @@ public class BookController {
     @GetMapping("/search")
     @Operation(summary = "Search book by params", description
             = "Search for book with corresponding params")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description
-                    = "Successfully find user by parameters"),
-            @ApiResponse(responseCode = "500", description
-                    = "User with this parameters is not exist")
-    })
     public List<BookDto> search(BookSearchParameters searchParameters) {
         return bookService.search(searchParameters);
     }

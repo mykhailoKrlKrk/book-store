@@ -5,6 +5,7 @@ import mate.academy.book.store.config.MapperConfig;
 import mate.academy.book.store.dto.book.BookDto;
 import mate.academy.book.store.dto.book.BookDtoWithoutCategoryIds;
 import mate.academy.book.store.dto.book.CreateBookRequestDto;
+import mate.academy.book.store.exception.EntityNotFoundException;
 import mate.academy.book.store.model.Book;
 import mate.academy.book.store.model.Category;
 import mate.academy.book.store.repository.book.BookRepository;
@@ -31,6 +32,6 @@ public interface BookMapper {
     @Named("bookFromId")
     default Book bookFromId(Long id, BookRepository bookRepository) {
         return bookRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Can't find book by id" + id));
+                () -> new EntityNotFoundException("Can't find book by id" + id));
     }
 }
