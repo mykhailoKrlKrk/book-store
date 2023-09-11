@@ -67,7 +67,7 @@ public class Book {
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted;
 
-    public void addCategory(Category category){
+    public void addCategory(Category category) {
         this.categories.add(category);
         category.getBooks().add(this);
     }
