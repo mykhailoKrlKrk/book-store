@@ -10,6 +10,7 @@ import mate.academy.book.store.mapper.BookMapper;
 import mate.academy.book.store.model.Book;
 import mate.academy.book.store.repository.book.BookRepository;
 import mate.academy.book.store.repository.book.BookSpecificationBuilder;
+import mate.academy.book.store.repository.book.CategoryRepository;
 import mate.academy.book.store.service.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -21,10 +22,13 @@ public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
     private final BookSpecificationBuilder specificationBuilder;
+    private final CategoryRepository categoryRepository;
 
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
         Book book = bookMapper.toModel(requestDto);
+        List<Long> categoriesIds = requestDto.getCategoriesIds();
+        categoryRepository.findAllById(categoriesIds).forEach(book::addCategory);
         return bookMapper.toDto(bookRepository.save(book));
     }
 
@@ -59,6 +63,12 @@ public class BookServiceImpl implements BookService {
         Specification<Book> bookSpecification = specificationBuilder.build(searchParameters);
         return bookRepository.findAll(bookSpecification)
                 .stream()
+                .map(bookMapper::toDto)
+                .toList();
+    }
+
+    public List<BookDto> getBooksByCategoryId(Long id) {
+        return bookRepository.findAllByCategoryId(id).stream()
                 .map(bookMapper::toDto)
                 .toList();
     }
