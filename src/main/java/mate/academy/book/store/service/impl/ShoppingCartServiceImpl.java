@@ -1,5 +1,6 @@
 package mate.academy.book.store.service.impl;
 
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import mate.academy.book.store.dto.shoppingcart.request.CreateBookItemDto;
 import mate.academy.book.store.dto.shoppingcart.request.UpdateBookQuantityDto;
@@ -32,6 +33,20 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public ShoppingCartResponseDto addBookToUserCart(CreateBookItemDto requestDto) {
         ShoppingCart shoppingCart = getShoppingCartByUser();
+        Long bookIdToAdd = requestDto.getBookId();
+        Integer quantityToAdd = requestDto.getQuantity();
+
+        Optional<CartItem> item = shoppingCart.getCartItems()
+                .stream()
+                .filter(cartItem -> cartItem.getBook().getId().equals(bookIdToAdd))
+                .findFirst();
+
+        if (item.isPresent()) {
+            CartItem existingCartItem = item.get();
+            int newQuantity = existingCartItem.getQuantity() + quantityToAdd;
+            existingCartItem.setQuantity(newQuantity);
+            return getUserCart();
+        }
         CartItem cartItem = cartItemService.save(requestDto);
         shoppingCart.getCartItems().add(cartItem);
         return getUserCart();
