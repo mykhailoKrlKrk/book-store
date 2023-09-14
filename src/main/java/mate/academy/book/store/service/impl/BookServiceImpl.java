@@ -6,7 +6,7 @@ import mate.academy.book.store.dto.book.BookDto;
 import mate.academy.book.store.dto.book.BookSearchParameters;
 import mate.academy.book.store.dto.book.CreateBookRequestDto;
 import mate.academy.book.store.exception.EntityNotFoundException;
-import mate.academy.book.store.mapper.BookMapper;
+import mate.academy.book.store.mapper.book.BookMapper;
 import mate.academy.book.store.model.Book;
 import mate.academy.book.store.repository.book.BookRepository;
 import mate.academy.book.store.repository.book.BookSpecificationBuilder;

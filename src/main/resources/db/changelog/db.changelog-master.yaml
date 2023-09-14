@@ -17,3 +17,7 @@ databaseChangeLog:
       file: db/changelog/changes/06-create-roles.yaml
   - include:
       file: db/changelog/changes/07-create-user-roles-relations.yaml
+  - include:
+      file: db/changelog/changes/10-create-shopping-carts-table.yaml
+  - include:
+      file: db/changelog/changes/11-create-cart-items-table.yaml

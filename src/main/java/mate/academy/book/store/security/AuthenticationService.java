@@ -1,8 +1,8 @@
 package mate.academy.book.store.security;
 
 import lombok.RequiredArgsConstructor;
-import mate.academy.book.store.dto.user.UserLoginRequestDto;
-import mate.academy.book.store.dto.user.UserLoginResponseDto;
+import mate.academy.book.store.dto.user.request.UserLoginRequestDto;
+import mate.academy.book.store.dto.user.response.UserLoginResponseDto;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,7 +16,7 @@ public class AuthenticationService {
 
     public UserLoginResponseDto authenticate(UserLoginRequestDto request) {
         final Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.email(), request.password())
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
         String token = jwtUtil.getToken(authentication.getName());
         return new UserLoginResponseDto(token);
