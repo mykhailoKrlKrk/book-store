@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import mate.academy.book.store.dto.book.category.CategoryDto;
 import mate.academy.book.store.dto.book.category.CategoryRequestDto;
 import mate.academy.book.store.exception.EntityNotFoundException;
-import mate.academy.book.store.mapper.CategoryMapper;
+import mate.academy.book.store.mapper.book.CategoryMapper;
 import mate.academy.book.store.model.Category;
 import mate.academy.book.store.repository.book.CategoryRepository;
 import mate.academy.book.store.service.CategoryService;

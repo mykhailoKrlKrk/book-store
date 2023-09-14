@@ -1,0 +1,56 @@
+package mate.academy.book.store.service.impl;
+
+import lombok.RequiredArgsConstructor;
+import mate.academy.book.store.dto.shoppingcart.request.CreateBookItemDto;
+import mate.academy.book.store.dto.shoppingcart.request.UpdateBookQuantityDto;
+import mate.academy.book.store.dto.shoppingcart.response.ShoppingCartResponseDto;
+import mate.academy.book.store.mapper.user.ShoppingCartMapper;
+import mate.academy.book.store.model.CartItem;
+import mate.academy.book.store.model.ShoppingCart;
+import mate.academy.book.store.model.User;
+import mate.academy.book.store.repository.shoppingcart.ShoppingCartRepository;
+import mate.academy.book.store.service.CartItemService;
+import mate.academy.book.store.service.ShoppingCartService;
+import mate.academy.book.store.service.UserService;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class ShoppingCartServiceImpl implements ShoppingCartService {
+    private final ShoppingCartRepository shoppingCartRepository;
+    private final CartItemService cartItemService;
+    private final ShoppingCartMapper shoppingCartMapper;
+    private final UserService userService;
+
+    @Override
+    public ShoppingCartResponseDto getUserCart() {
+        User user = userService.getAuthenticatedUser();
+        return shoppingCartMapper
+                .toDto(shoppingCartRepository.findShoppingCartByUserId(user.getId()));
+    }
+
+    @Override
+    public ShoppingCartResponseDto addBookToUserCart(CreateBookItemDto requestDto) {
+        ShoppingCart shoppingCart = getShoppingCartByUser();
+        CartItem cartItem = cartItemService.save(requestDto);
+        shoppingCart.getCartItems().add(cartItem);
+        return getUserCart();
+    }
+
+    @Override
+    public ShoppingCartResponseDto updateBookQuantity(Long id, UpdateBookQuantityDto requestDto) {
+        cartItemService.findById(id).setQuantity(requestDto.getQuantity());
+        return getUserCart();
+    }
+
+    @Override
+    public ShoppingCartResponseDto removeBookFromCart(Long cartItemId) {
+        cartItemService.deleteById(cartItemId);
+        return getUserCart();
+    }
+
+    public ShoppingCart getShoppingCartByUser() {
+        User user = userService.getAuthenticatedUser();
+        return shoppingCartRepository.findShoppingCartByUserId(user.getId());
+    }
+}

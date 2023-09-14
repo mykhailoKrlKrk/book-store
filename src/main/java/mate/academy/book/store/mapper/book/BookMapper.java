@@ -1,4 +1,4 @@
-package mate.academy.book.store.mapper;
+package mate.academy.book.store.mapper.book;
 
 import java.util.stream.Collectors;
 import mate.academy.book.store.config.MapperConfig;
