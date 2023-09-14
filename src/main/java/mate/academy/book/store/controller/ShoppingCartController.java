@@ -29,7 +29,7 @@ public class ShoppingCartController {
     @PostMapping
     @Operation(summary = "Add book", description = "Add book to user shopping cart")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Successfully added"),
+            @ApiResponse(responseCode = "201", description = "Successfully added to shopping cart"),
             @ApiResponse(responseCode = "409",
                     description = "Duplicate - The book is already exist in the shopping cart!")
     })
