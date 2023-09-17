@@ -1,4 +1,4 @@
-package mate.academy.book.store.service.impl;
+package mate.academy.book.store.service.shoppingcart;
 
 import lombok.RequiredArgsConstructor;
 import mate.academy.book.store.dto.shoppingcart.request.CreateBookItemDto;
@@ -10,8 +10,7 @@ import mate.academy.book.store.model.User;
 import mate.academy.book.store.repository.book.BookRepository;
 import mate.academy.book.store.repository.shoppingcart.CartItemRepository;
 import mate.academy.book.store.repository.shoppingcart.ShoppingCartRepository;
-import mate.academy.book.store.service.CartItemService;
-import mate.academy.book.store.service.UserService;
+import mate.academy.book.store.service.user.UserService;
 import org.springframework.stereotype.Service;
 
 @Service

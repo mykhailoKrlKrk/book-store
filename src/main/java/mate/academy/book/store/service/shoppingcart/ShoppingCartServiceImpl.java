@@ -1,4 +1,4 @@
-package mate.academy.book.store.service.impl;
+package mate.academy.book.store.service.shoppingcart;
 
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -10,9 +10,7 @@ import mate.academy.book.store.model.CartItem;
 import mate.academy.book.store.model.ShoppingCart;
 import mate.academy.book.store.model.User;
 import mate.academy.book.store.repository.shoppingcart.ShoppingCartRepository;
-import mate.academy.book.store.service.CartItemService;
-import mate.academy.book.store.service.ShoppingCartService;
-import mate.academy.book.store.service.UserService;
+import mate.academy.book.store.service.user.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,6 +26,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         User user = userService.getAuthenticatedUser();
         return shoppingCartMapper
                 .toDto(shoppingCartRepository.findShoppingCartByUserId(user.getId()));
+    }
+
+    @Override
+    public ShoppingCart getCart() {
+        User authenticatedUser = userService.getAuthenticatedUser();
+        return shoppingCartRepository.findShoppingCartByUserId(authenticatedUser.getId());
     }
 
     @Override

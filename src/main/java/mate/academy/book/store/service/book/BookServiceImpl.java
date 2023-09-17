@@ -1,4 +1,4 @@
-package mate.academy.book.store.service.impl;
+package mate.academy.book.store.service.book;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,6 @@ import mate.academy.book.store.model.Book;
 import mate.academy.book.store.repository.book.BookRepository;
 import mate.academy.book.store.repository.book.BookSpecificationBuilder;
 import mate.academy.book.store.repository.book.CategoryRepository;
-import mate.academy.book.store.service.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;

@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 import mate.academy.book.store.dto.book.BookDto;
 import mate.academy.book.store.dto.book.category.CategoryDto;
 import mate.academy.book.store.dto.book.category.CategoryRequestDto;
-import mate.academy.book.store.service.BookService;
-import mate.academy.book.store.service.CategoryService;
+import mate.academy.book.store.service.book.BookService;
+import mate.academy.book.store.service.book.CategoryService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Categories management", description = "Manage the categories th...")
+@Tag(name = "Categories management", description = "Manage the book categories endpoints")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/categories")

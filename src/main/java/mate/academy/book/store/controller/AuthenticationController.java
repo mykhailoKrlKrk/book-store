@@ -11,7 +11,7 @@ import mate.academy.book.store.dto.user.request.UserRegistrationRequestDto;
 import mate.academy.book.store.dto.user.response.UserLoginResponseDto;
 import mate.academy.book.store.dto.user.response.UserResponseDto;
 import mate.academy.book.store.security.AuthenticationService;
-import mate.academy.book.store.service.UserService;
+import mate.academy.book.store.service.user.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,7 +42,6 @@ public class AuthenticationController {
     @PostMapping("/register")
     @Operation(summary = "Register user", description = "Gives the ability to register user")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully registered"),
             @ApiResponse(responseCode = "409", description
                     = "User with this parameters is already exist")
     })

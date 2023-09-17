@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 import mate.academy.book.store.config.MapperConfig;
 import mate.academy.book.store.dto.shoppingcart.response.ShoppingCartResponseDto;
 import mate.academy.book.store.model.ShoppingCart;
-import mate.academy.book.store.service.UserService;
+import mate.academy.book.store.service.user.UserService;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

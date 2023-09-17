@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import mate.academy.book.store.dto.shoppingcart.request.CreateBookItemDto;
 import mate.academy.book.store.dto.shoppingcart.request.UpdateBookQuantityDto;
 import mate.academy.book.store.dto.shoppingcart.response.ShoppingCartResponseDto;
-import mate.academy.book.store.service.ShoppingCartService;
+import mate.academy.book.store.service.shoppingcart.ShoppingCartService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
