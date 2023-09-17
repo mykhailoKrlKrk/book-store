@@ -9,4 +9,6 @@ public interface UserService {
     UserResponseDto register(UserRegistrationRequestDto request) throws RegistrationException;
 
     User getAuthenticatedUser();
+
+    User getById(Long id);
 }

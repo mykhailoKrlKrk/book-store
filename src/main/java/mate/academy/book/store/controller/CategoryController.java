@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Categories management", description = "Manage the categories th...")
+@Tag(name = "Categories management", description = "Manage the book categories endpoints")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/categories")
