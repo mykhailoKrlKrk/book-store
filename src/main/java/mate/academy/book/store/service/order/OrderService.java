@@ -1,4 +1,4 @@
-package mate.academy.book.store.service;
+package mate.academy.book.store.service.order;
 
 import java.util.List;
 import mate.academy.book.store.dto.order.request.CreateOrderRequestDto;

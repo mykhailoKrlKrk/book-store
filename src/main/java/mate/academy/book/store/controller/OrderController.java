@@ -10,7 +10,7 @@ import mate.academy.book.store.dto.order.request.CreateOrderRequestDto;
 import mate.academy.book.store.dto.order.request.UpdateOrderStatusRequestDto;
 import mate.academy.book.store.dto.order.response.OrderItemsResponseDto;
 import mate.academy.book.store.dto.order.response.OrderResponseDto;
-import mate.academy.book.store.service.OrderService;
+import mate.academy.book.store.service.order.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;

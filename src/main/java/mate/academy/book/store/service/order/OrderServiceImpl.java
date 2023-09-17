@@ -1,4 +1,4 @@
-package mate.academy.book.store.service.impl;
+package mate.academy.book.store.service.order;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,10 +18,8 @@ import mate.academy.book.store.model.Order;
 import mate.academy.book.store.model.OrderItem;
 import mate.academy.book.store.model.ShoppingCart;
 import mate.academy.book.store.repository.order.OrderRepository;
-import mate.academy.book.store.service.OrderItemService;
-import mate.academy.book.store.service.OrderService;
-import mate.academy.book.store.service.ShoppingCartService;
-import mate.academy.book.store.service.UserService;
+import mate.academy.book.store.service.shoppingcart.ShoppingCartService;
+import mate.academy.book.store.service.user.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -58,9 +56,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderResponseDto updateOrderStatus(Long id, UpdateOrderStatusRequestDto requestDto) {
-        Order order = orderRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Can't find order by id: " + id));
+    public OrderResponseDto updateOrderStatus(Long orderId,
+                                              UpdateOrderStatusRequestDto requestDto) {
+        Order order = orderRepository.findById(orderId).orElseThrow(
+                () -> new EntityNotFoundException("Can't find order by id: " + orderId));
         order.setStatus(requestDto.getStatus());
         return orderMapper.toDto(order);
     }

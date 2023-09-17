@@ -1,4 +1,4 @@
-package mate.academy.book.store.service;
+package mate.academy.book.store.service.user;
 
 import mate.academy.book.store.dto.user.request.UserRegistrationRequestDto;
 import mate.academy.book.store.dto.user.response.UserResponseDto;

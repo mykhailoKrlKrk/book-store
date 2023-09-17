@@ -1,10 +1,9 @@
-package mate.academy.book.store.service.impl;
+package mate.academy.book.store.service.order;
 
 import lombok.AllArgsConstructor;
 import mate.academy.book.store.exception.EntityNotFoundException;
 import mate.academy.book.store.model.OrderItem;
 import mate.academy.book.store.repository.order.OrderItemRepository;
-import mate.academy.book.store.service.OrderItemService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,10 +16,10 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public OrderItem findByOrderAndId(Long orderId, Long id) {
-        return orderItemRepository.findOrderItemByOrderIdAndId(orderId, id).orElseThrow(
+    public OrderItem findByOrderAndId(Long orderId, Long itemId) {
+        return orderItemRepository.findOrderItemByOrderIdAndId(orderId, itemId).orElseThrow(
                 () -> new EntityNotFoundException(
                         "Can't find order item by parameters: "
-                                + "OrderId:" + orderId + ",and itemId:" + id));
+                                + "OrderId:" + orderId + ",and itemId:" + itemId));
     }
 }

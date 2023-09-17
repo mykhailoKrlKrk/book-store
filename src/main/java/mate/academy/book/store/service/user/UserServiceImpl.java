@@ -1,4 +1,4 @@
-package mate.academy.book.store.service.impl;
+package mate.academy.book.store.service.user;
 
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,6 @@ import mate.academy.book.store.model.User;
 import mate.academy.book.store.repository.shoppingcart.ShoppingCartRepository;
 import mate.academy.book.store.repository.user.RoleRepository;
 import mate.academy.book.store.repository.user.UserRepository;
-import mate.academy.book.store.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -52,8 +51,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getById(Long id) {
-        return userRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Can't find user by id:" + id));
+    public User getById(Long userId) {
+        return userRepository.findById(userId).orElseThrow(
+                () -> new EntityNotFoundException("Can't find user by id:" + userId));
     }
 }

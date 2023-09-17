@@ -1,4 +1,4 @@
-package mate.academy.book.store.service;
+package mate.academy.book.store.service.shoppingcart;
 
 import mate.academy.book.store.dto.shoppingcart.request.CreateBookItemDto;
 import mate.academy.book.store.dto.shoppingcart.request.UpdateBookQuantityDto;

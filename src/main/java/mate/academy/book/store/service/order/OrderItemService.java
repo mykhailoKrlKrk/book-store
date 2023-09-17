@@ -1,4 +1,4 @@
-package mate.academy.book.store.service;
+package mate.academy.book.store.service.order;
 
 import mate.academy.book.store.model.OrderItem;
 
