@@ -147,6 +147,13 @@
 
     <build>
         <plugins>
+            <plugin>   <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>mate.academy.book.store.BookStoreApplication</mainClass>
+                    <layout>JAR</layout>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
