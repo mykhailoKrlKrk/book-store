@@ -8,6 +8,7 @@ services:
     restart: unless-stopped
     env_file: ./.env
     environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQL_PASSWORD
       - MYSQL_USER=$MYSQL_USER
       - MYSQL_PASSWORD=$MYSQL_PASSWORD
       - MYSQL_DB=$MYSQL_DATABASE
@@ -22,11 +23,11 @@ services:
       - app_db
 
   app:
+    container_name: app
     depends_on:
       - mysqldb
     restart: on-failure
     image: book-store
-    container_name: app
     build: .
     env_file: ./.env
     ports:
