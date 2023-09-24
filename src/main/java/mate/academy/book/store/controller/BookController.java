@@ -11,6 +11,7 @@ import mate.academy.book.store.dto.book.BookDto;
 import mate.academy.book.store.dto.book.BookSearchParameters;
 import mate.academy.book.store.dto.book.CreateBookRequestDto;
 import mate.academy.book.store.service.book.BookService;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -27,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Book management", description = "Endpoints for managing books")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "api/books")
+@RequestMapping(value = "/books")
 public class BookController {
     private final BookService bookService;
 
@@ -75,7 +76,8 @@ public class BookController {
     @GetMapping("/search")
     @Operation(summary = "Search book by params", description
             = "Search for book with corresponding params")
-    public List<BookDto> search(BookSearchParameters searchParameters) {
-        return bookService.search(searchParameters);
+    public List<BookDto> search(@ParameterObject BookSearchParameters searchParameters,
+                                @ParameterObject Pageable pageable) {
+        return bookService.search(searchParameters, pageable);
     }
 }

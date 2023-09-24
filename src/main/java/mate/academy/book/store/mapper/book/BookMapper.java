@@ -26,7 +26,7 @@ public interface BookMapper {
     default void setCategoryIds(@MappingTarget BookDto bookDto, Book book) {
         bookDto.setCategoriesIds(book.getCategories().stream()
                 .map(Category::getId)
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toList()));
     }
 
     @Named("bookFromId")
