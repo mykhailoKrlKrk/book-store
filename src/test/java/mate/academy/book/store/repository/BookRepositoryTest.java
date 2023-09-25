@@ -22,7 +22,7 @@ public class BookRepositoryTest {
     @DisplayName("Find all books with category = 'horror', "
             + "expected result: list with two books")
     @Sql(scripts = {
-        "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/books/add-data/create-books-with-categories.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
         "classpath:database/books/delete-all-books.sql"
@@ -36,7 +36,7 @@ public class BookRepositoryTest {
     @DisplayName("Find all books with category = 'adventure', "
             + "expected result: list with one book")
     @Sql(scripts = {
-        "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/books/add-data/create-books-with-categories.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
         "classpath:database/books/delete-all-books.sql"
@@ -51,7 +51,7 @@ public class BookRepositoryTest {
     @DisplayName("Find books with no existing category, "
             + "expected result: empty list")
     @Sql(scripts = {
-        "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/books/add-data/create-books-with-categories.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
         "classpath:database/books/delete-all-books.sql"

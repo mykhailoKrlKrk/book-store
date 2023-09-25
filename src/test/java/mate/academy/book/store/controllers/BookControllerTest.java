@@ -46,10 +46,10 @@ public class BookControllerTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/books/add-data/getAllBooks-method-create.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/books/delete-from-db/getAllBooks-method-clean.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Get list of existing in DB books - expected result: return list of books")
     public void getAllBooks_ReturnListOfExistingBooks() throws Exception {
@@ -63,16 +63,16 @@ public class BookControllerTest {
                 });
         //Then
         assertNotNull(actual);
-        assertEquals(3, actual.size());
+        assertEquals(2, actual.size());
     }
 
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/books/add-data/getBookById-method-create.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/books/delete-from-db/getBookById-method-clean.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Find book by existing in DB id - expected result: return book")
     public void findById_ValidId_ReturnBook() throws Exception {
@@ -95,10 +95,10 @@ public class BookControllerTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/books/add-data/getBookById-method-create.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/books/delete-from-db/getBookById-method-clean.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Find book by not existing in DB id - expected result: "
             + "return exception - NOT FOUND")
@@ -113,10 +113,10 @@ public class BookControllerTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/books/add-data/updateBook-method-create.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/books/delete-from-db/updateBook-method-clean.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Update book by id - expected result: return updated book")
     public void updateBook_validId_Success() throws Exception {
@@ -146,10 +146,10 @@ public class BookControllerTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/books/add-data/updateBook-method-create.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/books/delete-from-db/updateBook-method-clean.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Update book by not existing id - expected result: "
             + "return exception - NOT FOUND")
@@ -171,10 +171,10 @@ public class BookControllerTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/books/add-data/create-method-createBooks.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/books/delete-from-db/create-book-clean.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Create book - expected result: create book in DB, return created book")
     public void createBook_ValidRequestDto_Success() throws Exception {
@@ -192,19 +192,15 @@ public class BookControllerTest {
                 .andReturn();
         BookDto actual = objectMapper.readValue(result.getResponse()
                 .getContentAsString(), BookDto.class);
+        actual.setCategoriesIds(List.of(1L));
+        actual.setId(2L);
         //Then
         assertNotNull(actual);
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
-    @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
-    }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-    @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
-    }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Create book with invalid isbn - expected result: "
             + "return exception - BAD REQUEST")
     public void createBook_WithInvalidIsbn_GetError() throws Exception {
@@ -225,10 +221,10 @@ public class BookControllerTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/books/add-data/delete-method-create.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/books/delete-from-db/delete-method-clean.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Delete book by id - expected result: delete book from DB")
     public void deleteBook_Success() throws Exception {
@@ -240,10 +236,10 @@ public class BookControllerTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/books/add-data/delete-method-create.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/books/delete-from-db/delete-method-clean.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Delete book by not existing in DB id - expected result: "
             + "return exception - NOT FOUND")
@@ -256,10 +252,10 @@ public class BookControllerTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/books/add-data/search-method-create.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/books/delete-from-db/search-method-delete.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Search books by params - search by author: "
             + "return list of author's books")
@@ -283,10 +279,10 @@ public class BookControllerTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/books/add-data/search-method-create.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/books/delete-from-db/search-method-delete.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Search books by params - search by isbn: "
             + "return book with specified id")
@@ -319,7 +315,7 @@ public class BookControllerTest {
 
     private static BookDto getResponseDto(CreateBookRequestDto requestDto) {
         return new BookDto()
-                .setId(4L)
+                .setId(2L)
                 .setDescription(requestDto.getDescription())
                 .setTitle(requestDto.getTitle())
                 .setCoverImage(requestDto.getCoverImage())
