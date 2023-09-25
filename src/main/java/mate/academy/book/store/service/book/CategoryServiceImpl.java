@@ -27,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDto getById(Long id) {
         Category categoryById = categoryRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Can't find category by i:" + id));
+                () -> new EntityNotFoundException("Can't find category by id: " + id));
         return categoryMapper.toDto(categoryById);
     }
 
@@ -40,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDto update(Long id, CategoryRequestDto requestDto) {
         categoryRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Can't find category by i:" + id));
+                () -> new EntityNotFoundException("Can't find category by id: " + id));
         Category category = categoryMapper.toEntity(requestDto);
         category.setId(id);
         return categoryMapper.toDto(categoryRepository.save(category));
@@ -49,7 +49,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void deleteById(Long id) {
         categoryRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Can't find category by i:" + id));
+                () -> new EntityNotFoundException("Can't find category by id: " + id));
         categoryRepository.deleteById(id);
     }
 }
