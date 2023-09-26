@@ -28,7 +28,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CategoryControllerTest {
+public class CategoryControllerIntegrationTest {
     protected static MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
@@ -46,10 +46,11 @@ public class CategoryControllerTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/categories/before/"
+                    + "before_createCategory_ValidRequestDto_Success.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/categories/after/after_createCategory_ValidRequestDto_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Create category - expected result: "
             + "create category in DB, return created category")
@@ -75,16 +76,18 @@ public class CategoryControllerTest {
                 .getContentAsString(), CategoryDto.class);
         //Then
         assertNotNull(actual);
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
     }
 
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/categories/before/"
+                    + "before_getAllCategories_ReturnListOfExistingCategories.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/categories/after/"
+                    + "after_getAllCategories_ReturnListOfExistingCategories.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Get list of existing in DB categories - expected result: "
             + "return list of categories")
@@ -105,10 +108,10 @@ public class CategoryControllerTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/categories/before/before_findById_ValidId_ReturnCategory.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/categories/after/after_findById_ValidId_ReturnCategory.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Find category by existing in DB id - expected result: return category")
     public void findById_ValidId_ReturnCategory() throws Exception {
@@ -131,10 +134,10 @@ public class CategoryControllerTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/categories/before/before_findById_InValidId_GetError.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/categories/after/after_findById_InValidId_GetError.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Find category by not existing in DB id - expected result: "
             + "return exception - NOT FOUND")
@@ -149,13 +152,13 @@ public class CategoryControllerTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/categories/before/before_updateCategory_ValidId_Success.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/categories/after/after_updateCategory_ValidId_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Update category by id - expected result: return updated category")
-    public void updateCategory_validId_Success() throws Exception {
+    public void updateCategory_ValidId_Success() throws Exception {
         //Given
         Long bookId = 1L;
         CategoryRequestDto updateCategoryRequest = new CategoryRequestDto()
@@ -181,10 +184,10 @@ public class CategoryControllerTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/categories/before/before_updateById_InValidId_ReturnError.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/categories/after/after_updateById_InValidId_ReturnError.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Update category by not existing id - expected result: "
             + "return exception - NOT FOUND")
@@ -206,10 +209,10 @@ public class CategoryControllerTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/categories/before/before_deleteCategory_Success.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/categories/after/after_deleteCategory_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Delete category by id - expected result: delete category from DB")
     public void deleteCategory_Success() throws Exception {
@@ -221,10 +224,10 @@ public class CategoryControllerTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/categories/before/before_deleteCategory_InvalidId_GetError.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/categories/after/after_deleteCategory_InvalidId_GetError.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Delete category by not existing in DB id - expected result: "
             + "return exception - NOT FOUND")
@@ -237,10 +240,10 @@ public class CategoryControllerTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/create-books-with-categories.sql",
+            "classpath:database/categories/before/before_getBooksByCategoryId_Success.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/delete-all-books.sql"
+            "classpath:database/categories/after/after_getBooksByCategoryId_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Get list of books by category id - expected result: "
             + "return list of books")
