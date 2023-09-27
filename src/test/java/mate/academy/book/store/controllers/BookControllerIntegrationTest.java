@@ -46,10 +46,12 @@ public class BookControllerIntegrationTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/before/before_getAllBooks_ReturnListOfExistingBooks.sql",
+            "classpath:database/BookControllerIntegrationTest/before/"
+                    + "before_getAllBooks_ReturnListOfExistingBooks.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/after/after_ getAllBooks_ReturnListOfExistingBooks.sql"
+            "classpath:database/BookControllerIntegrationTest/after/"
+                    + "after_ getAllBooks_ReturnListOfExistingBooks.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Get list of existing in DB books - expected result: return list of books")
     public void getAllBooks_ReturnListOfExistingBooks() throws Exception {
@@ -69,10 +71,12 @@ public class BookControllerIntegrationTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/before/before_findById_ValidId_ReturnBook.sql",
+            "classpath:database/BookControllerIntegrationTest/before/"
+                    + "before_findById_ValidId_ReturnBook.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/after/after_findById_ValidId_ReturnBook.sql"
+            "classpath:database/BookControllerIntegrationTest/after/"
+                    + "after_findById_ValidId_ReturnBook.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Find book by existing in DB id - expected result: return book")
     public void findById_ValidId_ReturnBook() throws Exception {
@@ -95,10 +99,12 @@ public class BookControllerIntegrationTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/before/before_findById_InValidId_GetError.sql",
+            "classpath:database/BookControllerIntegrationTest/before/"
+                    + "before_findById_InValidId_GetError.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/after/after_findById_InValidId_GetError.sql"
+            "classpath:database/BookControllerIntegrationTest/after/"
+                    + "after_findById_InValidId_GetError.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Find book by not existing in DB id - expected result: "
             + "return exception - NOT FOUND")
@@ -113,10 +119,12 @@ public class BookControllerIntegrationTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/before/before_updateBook_validId_Success.sql",
+            "classpath:database/BookControllerIntegrationTest/before/"
+                    + "before_updateBook_validId_Success.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/after/after_updateBook_validId_Success.sql"
+            "classpath:database/BookControllerIntegrationTest/after/"
+                    + "after_updateBook_validId_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Update book by id - expected result: return updated book")
     public void updateBook_validId_Success() throws Exception {
@@ -146,10 +154,12 @@ public class BookControllerIntegrationTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/before/before_updateById_InValidId_ReturnError.sql",
+            "classpath:database/BookControllerIntegrationTest/before/"
+                    + "before_updateById_InValidId_ReturnError.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/after/after_updateById_InValidId_ReturnError.sql"
+            "classpath:database/BookControllerIntegrationTest/after/"
+                    + "after_updateById_InValidId_ReturnError.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Update book by not existing id - expected result: "
             + "return exception - NOT FOUND")
@@ -171,10 +181,12 @@ public class BookControllerIntegrationTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/before/before_createBook_ValidRequestDto_Success.sql",
+            "classpath:database/BookControllerIntegrationTest/before/"
+                    + "before_createBook_ValidRequestDto_Success.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/after/after_createBook_ValidRequestDto_Success.sql"
+            "classpath:database/BookControllerIntegrationTest/after/"
+                    + "after_createBook_ValidRequestDto_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Create book - expected result: create book in DB, return created book")
     public void createBook_ValidRequestDto_Success() throws Exception {
@@ -201,10 +213,12 @@ public class BookControllerIntegrationTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/before/before_createBook_WithInvalidIsbn_GetError.sql",
+            "classpath:database/BookControllerIntegrationTest/before/"
+                    + "before_createBook_WithInvalidIsbn_GetError.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/after/after_createBook_WithInvalidIsbn_GetError.sql"
+            "classpath:database/BookControllerIntegrationTest/after/"
+                    + "after_createBook_WithInvalidIsbn_GetError.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Create book with invalid isbn - expected result: "
             + "return exception - BAD REQUEST")
@@ -226,10 +240,12 @@ public class BookControllerIntegrationTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/before/before_deleteBook_Success.sql",
+            "classpath:database/BookControllerIntegrationTest/before/"
+                    + "before_deleteBook_Success.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/after/after_deleteBook_Success.sql"
+            "classpath:database/BookControllerIntegrationTest/after/"
+                    + "after_deleteBook_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Delete book by id - expected result: delete book from DB")
     public void deleteBook_Success() throws Exception {
@@ -241,10 +257,12 @@ public class BookControllerIntegrationTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/books/before/before_deleteBook_InvalidId_GetError.sql",
+            "classpath:database/BookControllerIntegrationTest/before/"
+                    + "before_deleteBook_InvalidId_GetError.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/after/after_deleteBook_InvalidId_GetError.sql"
+            "classpath:database/BookControllerIntegrationTest/after/"
+                    + "after_deleteBook_InvalidId_GetError.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Delete book by not existing in DB id - expected result: "
             + "return exception - NOT FOUND")
@@ -257,10 +275,12 @@ public class BookControllerIntegrationTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/before/before_searchByParams_SearchByAuthor_Success.sql",
+            "classpath:database/BookControllerIntegrationTest/before/"
+                    + "before_searchByParams_SearchByAuthor_Success.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/after/after_searchByParams_SearchByAuthor_Success.sql"
+            "classpath:database/BookControllerIntegrationTest/after/"
+                    + "after_searchByParams_SearchByAuthor_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Search books by params - search by author: "
             + "return list of author's books")
@@ -284,10 +304,12 @@ public class BookControllerIntegrationTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/books/before/before_searchByParams_SearchByIsbn_Success.sql",
+            "classpath:database/BookControllerIntegrationTest/before/"
+                    + "before_searchByParams_SearchByIsbn_Success.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/books/after/after_searchByParams_SearchByIsbn_Success.sql"
+            "classpath:database/BookControllerIntegrationTest/after/"
+                    + "after_searchByParams_SearchByIsbn_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Search books by params - search by isbn: "
             + "return book with specified id")

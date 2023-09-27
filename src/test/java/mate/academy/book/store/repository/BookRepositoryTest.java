@@ -22,12 +22,12 @@ public class BookRepositoryTest {
     @DisplayName("Find all books with category = 'horror', "
             + "expected result: list with two books")
     @Sql(scripts = {
-            "classpath:database/books/repository/before/"
+            "classpath:database/BookRepositoryTest/before/"
                     + "before_findAllByCategoryId_horrorCategoryBooks_ReturnListWithTwoBooks.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-        "classpath:database/books/repository/"
-                + "after/after_findAllByCategoryId_horrorCategoryBooks_ReturnListWithTwoBooks.sql"
+        "classpath:database/BookRepositoryTest/after/"
+                + "after_findAllByCategoryId_horrorCategoryBooks_ReturnListWithTwoBooks.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void findAllByCategoryId_horrorCategoryBooks_ReturnListWithTwoBooks() {
         List<Book> actual = bookRepository.findAllByCategoryId(1L);
@@ -38,11 +38,11 @@ public class BookRepositoryTest {
     @DisplayName("Find all books with category = 'adventure', "
             + "expected result: list with one book")
     @Sql(scripts = {
-            "classpath:database/books/repository/before/"
+            "classpath:database/BookRepositoryTest/before/"
                     + "before_findAllByCategoryId_adventureCategoryBooks_ReturnListWithOneBook.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-        "classpath:database/books/repository/after/"
+        "classpath:database/BookRepositoryTest/after/"
                 + "after_findAllByCategoryId_adventureCategoryBooks_ReturnListWithOneBook.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void findAllByCategoryId_adventureCategoryBooks_ReturnListWithOneBook() {
@@ -55,11 +55,11 @@ public class BookRepositoryTest {
     @DisplayName("Find books with no existing category, "
             + "expected result: empty list")
     @Sql(scripts = {
-            "classpath:database/books/repository/before/"
+            "classpath:database/BookRepositoryTest/before/"
                     + "before_findAllByCategoryId_bookWithNoExistingCategory_ReturnEmptyList.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-        "classpath:database/books/repository/after/"
+        "classpath:database/BookRepositoryTest/after/"
                 + "after_findAllByCategoryId_bookWithNoExistingCategory_ReturnEmptyList.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void findAllByCategoryId_bookWithNoExistingCategory_ReturnEmptyList() {

@@ -46,11 +46,12 @@ public class CategoryControllerIntegrationTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/categories/before/"
+            "classpath:database/CategoryControllerIntegrationTest/before/"
                     + "before_createCategory_ValidRequestDto_Success.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/categories/after/after_createCategory_ValidRequestDto_Success.sql"
+            "classpath:database/CategoryControllerIntegrationTest/after/"
+                    + "after_createCategory_ValidRequestDto_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Create category - expected result: "
             + "create category in DB, return created category")
@@ -82,11 +83,11 @@ public class CategoryControllerIntegrationTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/categories/before/"
+            "classpath:database/CategoryControllerIntegrationTest/before/"
                     + "before_getAllCategories_ReturnListOfExistingCategories.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/categories/after/"
+            "classpath:database/CategoryControllerIntegrationTest/after/"
                     + "after_getAllCategories_ReturnListOfExistingCategories.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Get list of existing in DB categories - expected result: "
@@ -108,10 +109,12 @@ public class CategoryControllerIntegrationTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/categories/before/before_findById_ValidId_ReturnCategory.sql",
+            "classpath:database/CategoryControllerIntegrationTest/before/"
+                    + "before_findById_ValidId_ReturnCategory.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/categories/after/after_findById_ValidId_ReturnCategory.sql"
+            "classpath:database/CategoryControllerIntegrationTest/after/"
+                    + "after_findById_ValidId_ReturnCategory.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Find category by existing in DB id - expected result: return category")
     public void findById_ValidId_ReturnCategory() throws Exception {
@@ -134,10 +137,12 @@ public class CategoryControllerIntegrationTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/categories/before/before_findById_InValidId_GetError.sql",
+            "classpath:database/CategoryControllerIntegrationTest/before/"
+                    + "before_findById_InValidId_GetError.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/categories/after/after_findById_InValidId_GetError.sql"
+            "classpath:database/CategoryControllerIntegrationTest/after/"
+                    + "after_findById_InValidId_GetError.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Find category by not existing in DB id - expected result: "
             + "return exception - NOT FOUND")
@@ -152,10 +157,12 @@ public class CategoryControllerIntegrationTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/categories/before/before_updateCategory_ValidId_Success.sql",
+            "classpath:database/CategoryControllerIntegrationTest/before/"
+                    + "before_updateCategory_ValidId_Success.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/categories/after/after_updateCategory_ValidId_Success.sql"
+            "classpath:database/CategoryControllerIntegrationTest/after/"
+                    + "after_updateCategory_ValidId_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Update category by id - expected result: return updated category")
     public void updateCategory_ValidId_Success() throws Exception {
@@ -184,10 +191,12 @@ public class CategoryControllerIntegrationTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/categories/before/before_updateById_InValidId_ReturnError.sql",
+            "classpath:database/CategoryControllerIntegrationTest/before/"
+                    + "before_updateById_InValidId_ReturnError.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/categories/after/after_updateById_InValidId_ReturnError.sql"
+            "classpath:database/CategoryControllerIntegrationTest/after/"
+                    + "after_updateById_InValidId_ReturnError.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Update category by not existing id - expected result: "
             + "return exception - NOT FOUND")
@@ -209,10 +218,12 @@ public class CategoryControllerIntegrationTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/categories/before/before_deleteCategory_Success.sql",
+            "classpath:database/CategoryControllerIntegrationTest/before/"
+                    + "before_deleteCategory_Success.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/categories/after/after_deleteCategory_Success.sql"
+            "classpath:database/CategoryControllerIntegrationTest/after/"
+                    + "after_deleteCategory_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Delete category by id - expected result: delete category from DB")
     public void deleteCategory_Success() throws Exception {
@@ -224,10 +235,12 @@ public class CategoryControllerIntegrationTest {
     @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = {
-            "classpath:database/categories/before/before_deleteCategory_InvalidId_GetError.sql",
+            "classpath:database/CategoryControllerIntegrationTest/before/"
+                    + "before_deleteCategory_InvalidId_GetError.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/categories/after/after_deleteCategory_InvalidId_GetError.sql"
+            "classpath:database/CategoryControllerIntegrationTest/after/"
+                    + "after_deleteCategory_InvalidId_GetError.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Delete category by not existing in DB id - expected result: "
             + "return exception - NOT FOUND")
@@ -240,10 +253,12 @@ public class CategoryControllerIntegrationTest {
     @Test
     @WithMockUser
     @Sql(scripts = {
-            "classpath:database/categories/before/before_getBooksByCategoryId_Success.sql",
+            "classpath:database/CategoryControllerIntegrationTest/before/"
+                    + "before_getBooksByCategoryId_Success.sql",
     }, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = {
-            "classpath:database/categories/after/after_getBooksByCategoryId_Success.sql"
+            "classpath:database/CategoryControllerIntegrationTest/after/"
+                    + "after_getBooksByCategoryId_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     @DisplayName("Get list of books by category id - expected result: "
             + "return list of books")
