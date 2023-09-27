@@ -63,9 +63,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public ShoppingCartResponseDto removeBookFromCart(Long cartItemId) {
+    public void removeBookFromCart(Long cartItemId) {
         cartItemService.deleteById(cartItemId);
-        return getUserCart();
+        getUserCart();
     }
 
     public ShoppingCart getShoppingCartByUser() {
