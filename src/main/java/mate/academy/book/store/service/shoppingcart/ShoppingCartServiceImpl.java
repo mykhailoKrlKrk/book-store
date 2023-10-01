@@ -5,10 +5,12 @@ import lombok.RequiredArgsConstructor;
 import mate.academy.book.store.dto.shoppingcart.request.CreateBookItemDto;
 import mate.academy.book.store.dto.shoppingcart.request.UpdateBookQuantityDto;
 import mate.academy.book.store.dto.shoppingcart.response.ShoppingCartResponseDto;
+import mate.academy.book.store.exception.EntityNotFoundException;
 import mate.academy.book.store.mapper.user.ShoppingCartMapper;
 import mate.academy.book.store.model.CartItem;
 import mate.academy.book.store.model.ShoppingCart;
 import mate.academy.book.store.model.User;
+import mate.academy.book.store.repository.shoppingcart.CartItemRepository;
 import mate.academy.book.store.repository.shoppingcart.ShoppingCartRepository;
 import mate.academy.book.store.service.user.UserService;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final ShoppingCartRepository shoppingCartRepository;
+    private final CartItemRepository cartItemRepository;
     private final CartItemService cartItemService;
     private final ShoppingCartMapper shoppingCartMapper;
     private final UserService userService;
@@ -25,13 +28,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public ShoppingCartResponseDto getUserCart() {
         User user = userService.getAuthenticatedUser();
         return shoppingCartMapper
-                .toDto(shoppingCartRepository.findShoppingCartByUserId(user.getId()));
-    }
-
-    @Override
-    public ShoppingCart getCart() {
-        User authenticatedUser = userService.getAuthenticatedUser();
-        return shoppingCartRepository.findShoppingCartByUserId(authenticatedUser.getId());
+                .toDto(shoppingCartRepository.findShoppingCartByUserId(user.getId())
+                        .orElseGet(() -> createUserCart(user)));
     }
 
     @Override
@@ -64,12 +62,23 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public void removeBookFromCart(Long cartItemId) {
+        cartItemRepository.findById(cartItemId).orElseThrow(
+                () -> new EntityNotFoundException("Can't find cart item by id: "
+                        + cartItemId));
         cartItemService.deleteById(cartItemId);
         getUserCart();
     }
 
+    private ShoppingCart createUserCart(User user) {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setUser(user);
+        return shoppingCartRepository.save(shoppingCart);
+    }
+
+    @Override
     public ShoppingCart getShoppingCartByUser() {
         User user = userService.getAuthenticatedUser();
-        return shoppingCartRepository.findShoppingCartByUserId(user.getId());
+        return shoppingCartRepository.findShoppingCartByUserId(user.getId())
+                .orElseGet(() -> createUserCart(user));
     }
 }

@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderResponseDto createOrder(CreateOrderRequestDto requestDto) {
-        ShoppingCart userCart = shoppingCartService.getCart();
+        ShoppingCart userCart = shoppingCartService.getShoppingCartByUser();
 
         Order orderFromCart = orderMapper.createOrderFromCart(userCart);
         orderFromCart.setShippingAddress(requestDto.getShippingAddress());
