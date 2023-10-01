@@ -1,0 +1,2 @@
+INSERT INTO users (email, password, first_name, last_name, shipping_address)
+VALUES ('john.doe@example.com', '$2a$10$RxKfKfaioGj1gRE93hOC6.EFguEG4XbOrnLvRfI.AVfgA730ZCmTe', 'John', 'Doe', '123 Main St, City, Country');

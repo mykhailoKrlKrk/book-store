@@ -5,12 +5,15 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 import mate.academy.book.store.validation.FieldMatch;
+import mate.academy.book.store.validation.Mail;
 import mate.academy.book.store.validation.Password;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@Accessors(chain = true)
 @FieldMatch(
         field = "password",
         fieldMatch = "repeatPassword",
@@ -19,6 +22,7 @@ import mate.academy.book.store.validation.Password;
 public class UserRegistrationRequestDto {
     @NotBlank
     @Size(min = 4, max = 50)
+    @Mail
     private String email;
     @NotBlank
     @Size(min = 4, max = 100)

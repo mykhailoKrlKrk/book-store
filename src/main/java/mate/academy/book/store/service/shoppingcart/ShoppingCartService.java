@@ -8,7 +8,7 @@ import mate.academy.book.store.model.ShoppingCart;
 public interface ShoppingCartService {
     ShoppingCartResponseDto getUserCart();
 
-    ShoppingCart getCart();
+    ShoppingCart getShoppingCartByUser();
 
     ShoppingCartResponseDto addBookToUserCart(CreateBookItemDto requestDto);
 
