@@ -32,8 +32,8 @@ public class UserRepositoryIntegrationTest {
     }
 
     @Test
-    @DisplayName("Get user by mail, "
-            + "expected result: return user by specific mail")
+    @DisplayName("Get user by not existing mail, "
+            + "expected result: return empty response")
     public void findByEmail_InvalidMail_GetError() {
         //Given
         String userMail = "unknown@mail.com";

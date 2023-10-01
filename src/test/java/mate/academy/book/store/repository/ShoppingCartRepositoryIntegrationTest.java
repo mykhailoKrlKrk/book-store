@@ -20,8 +20,8 @@ public class ShoppingCartRepositoryIntegrationTest {
     private ShoppingCartRepository shoppingCartRepository;
 
     @Test
-    @DisplayName("Find all books with category = 'horror', "
-            + "expected result: list with two books")
+    @DisplayName("Find shopping cart by user id "
+            + "expected result: return user cart")
     @Sql(scripts = {
             "classpath:database/ShoppingCartRepositoryIntegrationTest/before/"
                     + "before_findShoppingCartByUserId_ValidUerId_Success.sql",
@@ -43,8 +43,8 @@ public class ShoppingCartRepositoryIntegrationTest {
     }
 
     @Test
-    @DisplayName("Find all books with category = 'horror', "
-            + "expected result: list with two books")
+    @DisplayName("Find shopping cart by invalid user id "
+            + "expected result: return empty response")
     @Sql(scripts = {
             "classpath:database/ShoppingCartRepositoryIntegrationTest/before/"
                     + "before_findShoppingCartByUserId_InValidUserId_Error.sql",

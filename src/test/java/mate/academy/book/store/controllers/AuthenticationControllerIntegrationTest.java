@@ -41,7 +41,7 @@ public class AuthenticationControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("Login like user - expected result: return token")
+    @DisplayName("Register like user - expected result: user successfully register ")
     @Sql(scripts = {
             "classpath:database/AuthenticationControllerIntegrationTest/after/"
                     + "after_register_ValidRequest_Success.sql",
@@ -77,7 +77,7 @@ public class AuthenticationControllerIntegrationTest {
     }
 
     @Test
-    @DisplayName("Login like user with invalid email - "
+    @DisplayName("Register like user with invalid email - "
             + "expected result: return error - BAD REQUEST")
     public void register_InValidMail_GetError() throws Exception {
         //Given

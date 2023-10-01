@@ -189,8 +189,8 @@ public class OrderControllerIntegrationTest {
             "classpath:database/OrderControllerIntegrationTest/after/"
                     + "after_getOrderItems_ValidId_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-    @DisplayName("Update order status using invalid id - expected result: "
-            + "return error - NOT FOUND")
+    @DisplayName("Get order items - expected result: "
+            + "return list of all items in order")
     public void getOrderItems_ValidId_Success() throws Exception {
         //Given
         Long orderId = 1L;
@@ -217,7 +217,7 @@ public class OrderControllerIntegrationTest {
             "classpath:database/OrderControllerIntegrationTest/after/"
                     + "after_getOrderItems_InValidId_GetError.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-    @DisplayName("Update order status using invalid id - expected result: "
+    @DisplayName("Get order items using invalid id - expected result: "
             + "return error - NOT FOUND")
     public void getOrderItems_InValidId_GetError() throws Exception {
         //Given
@@ -239,8 +239,8 @@ public class OrderControllerIntegrationTest {
             "classpath:database/OrderControllerIntegrationTest/after/"
                     + "after_getOrderItem_ValidData_Success.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-    @DisplayName("Update order status using invalid id - expected result: "
-            + "return error - NOT FOUND")
+    @DisplayName("Get order item using  - expected result: "
+            + "return item by id")
     public void getOrderItem_ValidData_Success() throws Exception {
         //Given
         Long orderId = 1L;
@@ -271,7 +271,7 @@ public class OrderControllerIntegrationTest {
             "classpath:database/OrderControllerIntegrationTest/after/"
                     + "after_getOrderItem_InValidData_GetError.sql"
     }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-    @DisplayName("Update order status using invalid id - expected result: "
+    @DisplayName("Get order item using invalid id - expected result: "
             + "return error - NOT FOUND")
     public void getOrderItem_InValidData_GetError() throws Exception {
         //Given
