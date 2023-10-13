@@ -6,7 +6,8 @@
 - The main framework of the project is Spring Boot which provides various tools for developing web applications with wide functionality.
 
 - Pom.xml dependencies overwiev:
-  | Feature                           | Usage                                                                  |
+
+| Feature                           | Usage                                                                  |
 |----------------------------------|------------------------------------------------------------------------------|
 | Spring Boot Security and JWT Token | Enable secure user authentication and data protection.                      |
 | Spring Boot Data JPA                | This feature enables users to interact with the database and perform various operations. It provides a range of functionalities to manipulate and manage the data stored in the database. creation, updating, and removal.        |
