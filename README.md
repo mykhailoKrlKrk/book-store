@@ -1,10 +1,37 @@
 # 📚Book Store 🔖
- ![Java Badge](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)  ![MySQL Badge](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white) ![AWSBadge](https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white) ![Hibernate Badge](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white) ![Spring Boot Badge](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+ ![Java Badge](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white) ![Spring Boot Badge](https://img.shields.io/badge/Spring_Boot-F2F4F9?style=for-the-badge&logo=spring-boot)  ![Spring Security](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white) ![Hibernate Badge](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white) ![MySQL Badge](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white) ![AWSBadge](https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)    ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white)
 
 
 
 ### 📖 Project Overview 
 - This web application showcases a full-fledged online bookstore, enabling users to easily select items and complete orders.
+### 🌅 Technical Abilities
+| Action                     | User Role               | Description                    |
+|---------------------------|-------------------------|--------------------------------|
+| Authenticate/register      | User                    | Register and authenticate users |
+| Update book by id         | Admin                   | Update book details             |
+| Get all books             | User/Admin              | Retrieve all books              |
+| Create book               | Admin                   | Add a new book                  |
+| Find book by id           | User/Admin              | Retrieve a book by its ID       |
+| Delete book               | Admin                   | Remove a book                   |
+| Search books by params    | User                    | Search for books using parameters |
+| Create category           | Admin                   | Add a new category              |
+| Get all categories        | User/Admin              | Retrieve all categories         |
+| Update category           | Admin                   | Modify category details         |
+| Get category by id        | User/Admin              | Retrieve category by ID         |
+| Delete category           | Admin                   | Remove a category               |
+| Get book by category id   | User                    | Retrieve books by category ID   |
+| Update order status       | Admin                   | Update order status             |
+| Add book to shopping cart | User                    | Add a book to the shopping cart |
+| Update shopping cart      | User                    | Modify items in the shopping cart |
+| Delete book from cart     | User                    | Remove a book from the cart     |
+| Create order              | User                    | Place a new order               |
+| Update order status       | Admin                   | Update order status             |
+| Get order items           | User                    | Retrieve order items            |
+| Get order item by id      | User                    | Retrieve an order item by its ID|
+
+
+
 ### ⚙️ Technical features
 ---
 - The main framework of the project is Spring Boot which provides various tools for developing web applications with wide functionality.
@@ -19,7 +46,11 @@
 | Docker                  | A containerization platform simplifies deployment, improves portability, and eases management of Spring Boot applications and their dependencies by providing an isolated runtime environment for applications. |
 | Integrational tests usning testcontainers                    | With Test containers, tests run against a real database instance, ensuring the validity of SQL queries and transactions.                 |
 | Hibernate          | An object-relational mapping (ORM) framework that simplifies database interaction in Spring Boot applications. It automates the mapping of Java classes to database tables, streamlining data persistence and retrieval operations.                                            |
-| Mapstruct and Lombok              |Mapstruct and Lombok are two useful tools that can simplify the process of mapping objects between Java beans. By generating mapping code and providing annotations for common methods like getters, setters, and constructors, these tools can help to reduce boilerplate code and make Java code more concise and readable. When used together in Spring Boot applications, they can enhance code maintainability and improve developer productivity.
+| Mapstruct and Lombok              |Mapstruct and Lombok are two useful tools that can simplify the process of mapping objects between Java beans. By generating mapping code and providing annotations for common methods like getters, setters, and constructors, these tools can help to reduce boilerplate code and make Java code more concise and readable. When used together in Spring Boot applications, they can enhance code maintainability and improve developer productivity.|
+
+
+
+
 
 ## 🧱 Project structure 
 --- 
@@ -42,3 +73,4 @@ This project follows a structured approach utilizing the n-tier architecture, en
 8. ⚙️ Service: The Service component contains the core business logic of the application. 
 
 9. ✅ Validation: The Validation component ensures validation and verification of input data.
+10. 📊 Testing layer using testcontainers: The project has implemented 50 integration tests to assess the functionality of the program under various conditions and exceptional situations at the repository, service, and controller levels. An additional plugin (jacoco) is utilized to show the Coverage results in a schematic manner.
