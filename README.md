@@ -74,3 +74,20 @@ This project follows a structured approach utilizing the n-tier architecture, en
 
 9. ✅ Validation: The Validation component ensures validation and verification of input data.
 10. 📊 Testing layer using testcontainers: The project has implemented 50 integration tests to assess the functionality of the program under various conditions and exceptional situations at the repository, service, and controller levels. An additional plugin (jacoco) is utilized to show the Coverage results in a schematic manner.
+
+### 🛠️ Integration and Usage
+---
+List of technologies required for use: 
+
+- Docker
+- MySQL
+- Additional: Postman (for testing endpoints)  
+#### 🚀 Run Project
+
+Please make sure that you have all the required technologies installed before proceeding. Once that's done, follow the steps below:
+
+1. Run Docker.
+2. Change the .env file to match your database settings.
+3. Open your terminal and navigate to the appropriate directory. Run the command `docker compose up`.
+4. For testing using Swagger, open your browser and enter the URL: `http://localhost:8080/api/swagger-ui/index.html#/`. To authenticate, use the following credentials: User: bob@mail.com, Password: BobOne (this is the default user created by Liquibase, but you can change the details if needed).
+5. To test using Postman, open the Postman web or desktop client and enter the URL `http://localhost:8088/api/{endpoint}`. For example, to test the books endpoint, enter `http://localhost:8088/api/books`.
